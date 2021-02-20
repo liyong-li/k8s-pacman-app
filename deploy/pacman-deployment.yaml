@@ -21,6 +21,9 @@ spec:
       hostNetwork: true
       containers:
       - image: quay.io/jpacker/nodejs-pacman-app:green
+        env:
+        - name: MONGO_SERVICE_HOST
+          value: "mongo.aws.com"
         name: pacman
         ports:
         - containerPort: 8080
