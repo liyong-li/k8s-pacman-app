@@ -60,15 +60,6 @@ spec:
   clusterConditions:
   - status: "True"
     type: ManagedClusterConditionAvailable
-  clusterSelector:
-    clusterReplicas: 2
-    matchExpressions:
-    - key: region
-      operator: In
-      values:
-      - us-east-1
-      - us-west-1
-      - europe-west3
-    matchLabels:
-      environment: dev
-      apps/pacman: deployed
+    clusterSelector:
+      matchLabels:
+        cloud: Amazon
