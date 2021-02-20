@@ -10,9 +10,10 @@ metadata:
     apps.open-cluster-management.io/github-path: deploy
 spec:
   type: GitHub
-  pathname: https://github.com/mdelder/k8s-pacman-app.git
-  # secretRef:
-  #   name: github-credentials
+  pathname: https://github.com/DarrickLeong/k8s-pacman-app-1
+  #  secretRef:
+  #  name: github-credentials
+
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
