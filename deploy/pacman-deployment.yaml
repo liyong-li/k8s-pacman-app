@@ -23,9 +23,9 @@ spec:
       - image: quay.io/jpacker/nodejs-pacman-app:green
         env:
         - name: MONGO_SERVICE_HOST
-          value: "mongo-mongo.apps.cluster-d63b.d63b.example.opentlc.com"
+          value: "ace17162bcaad48c5a22fec0b0146456-1251769234.us-east-1.elb.amazonaws.com"
         - name: MY_MONGO_PORT
-          value: "443"
+          value: "27017"
         name: pacman
         ports:
         - containerPort: 8080
