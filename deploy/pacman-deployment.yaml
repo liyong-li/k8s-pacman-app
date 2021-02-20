@@ -21,9 +21,9 @@ spec:
       hostNetwork: true
       containers:
       - image: quay.io/jpacker/nodejs-pacman-app:green
-        env:
-        - name: MONGO_SERVICE_HOST
-          value: "mongo-mongo.apps.cluster-d63b.d63b.example.opentlc.com"
+        # env:
+        #- name: MONGO_SERVICE_HOST
+        #  value: "mongo-mongo.apps.cluster-d63b.d63b.example.opentlc.com"
         name: pacman
         ports:
         - containerPort: 8080
