@@ -4,7 +4,6 @@ metadata:
   name: mongo
   namespace: mongo
 spec:
-  host: mongo.aws.com
   port:
     targetPort: 27017
   tls:
