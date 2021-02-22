@@ -6,6 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: pacman
 spec:
+  host: pacman.demo.ltsai.com
   path: "/"
   to:
     kind: Service
