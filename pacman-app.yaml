@@ -1,67 +1,50 @@
----
-apiVersion: apps.open-cluster-management.io/v1
-kind: Channel
-metadata:
-  name: pacman-app-latest
-  namespace: pacman-app
-  labels:
-    app.kubernetes.io/name: pacman
-  annotations:
-    apps.open-cluster-management.io/github-path: deploy
-spec:
-  type: GitHub
-  pathname: https://github.com/DarrickLeong/k8s-pacman-app-1
-  #  secretRef:
-  #  name: github-credentials
-
----
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
-  name: pacman-app
+  name: pacman
   namespace: pacman-app
+  annotations: {}
+  selfLink: /apis/app.k8s.io/v1beta1/namespaces/pacman-app/applications/pacman
 spec:
   componentKinds:
-  - group: apps.open-cluster-management.io
-    kind: Subscription
+    - group: apps.open-cluster-management.io
+      kind: Subscription
   descriptor: {}
   selector:
     matchExpressions:
-    - key: app.kubernetes.io/name
-      operator: In
-      values:
-      - pacman
+      - key: app
+        operator: In
+        values:
+          - pacman
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
+  name: pacman-subscription-0
+  namespace: pacman-app
   annotations:
     apps.open-cluster-management.io/git-branch: main
-    apps.open-cluster-management.io/github-path: deploy
-  name: pacman-app
-  namespace: pacman-app
+    apps.open-cluster-management.io/git-path: deploy
   labels:
-    app.kubernetes.io/name: pacman
+    app: pacman
+  selfLink: /apis/apps.open-cluster-management.io/v1/namespaces/pacman-app/subscriptions/pacman-subscription-0
 spec:
   channel: pacman-app/pacman-app-latest
-  hooksecretref:
-    name: toweraccess
   placement:
     placementRef:
+      name: pacman-placement-0
       kind: PlacementRule
-      name: pacman-dev-clusters
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: pacman-dev-clusters
+  name: pacman-placement-0
   namespace: pacman-app
+  labels:
+    app: pacman
+  selfLink: /apis/apps.open-cluster-management.io/v1/namespaces/pacman-app/placementrules/pacman-placement-0
 spec:
-  clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
-    clusterSelector:
-      matchLabels:
-        cloud: 
-        - Amazon
-        - Azure
+  clusterSelector:
+    matchLabels:
+      app.kubernetes.io/name: pacman
+
