@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pacman 
+  namespace: pacman-app
+spec:
+  selector:
+    matchLabels:
+      app: pacman
+  template:
+    metadata:
+      labels:
+        app: pacman
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/worker: ''
+      containers:
+        - name: pacman
+          image: quay.io/jpacker/nodejs-pacman-app:green        
+          command:
+            - tail
+          args:
+            - -f
+            - /dev/null
