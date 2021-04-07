@@ -2,57 +2,10 @@
 
 # Setup
 
-## Configure an OpenShift 4.5+ cluster.
-Provision an OpenShift 4.5 or later cluster following the default instructions. The cluster should have at least 3 worker nodes with a total of 18 CPU and 80G of memory or `m5.xlarge` on AWS EC2.
+## Provision OpenShift 4.6+ cluster.
+Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, 1 Cluster will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
 
-The following example `install-config.yaml` was used to prepare the Hub cluster for the demo:
 
-### install-config.yaml
-```bash
-apiVersion: v1
-baseDomain: SPECIFY_YOUR_BASE_DOMAIN
-compute:
-- hyperthreading: Enabled
-  name: worker
-  platform:
-    aws:
-      zones:
-      - us-east-1b
-      - us-east-1c
-      - us-east-1d
-      type: m5.xlarge
-      rootVolume:
-        iops: 4000
-        size: 250
-        type: io1
-  replicas: 3
-controlPlane:
-  hyperthreading: Enabled
-  name: master
-  platform: {}
-  replicas: 3
-metadata:
-  name: SPECIFY_YOUR_CLUSTER_NAME
-networking:
-  clusterNetwork:
-  - cidr: 10.128.0.0/14
-    hostPrefix: 23
-  machineCIDR: 10.0.0.0/16
-  networkType: OpenShiftSDN
-  serviceNetwork:
-  - 172.30.0.0/16
-platform:
-  aws:
-    region: us-east-1
-    userTags:
-      owner: SPECIFY_YOUR_EMAIL_ADDRESS
-      purpose: demo
-publish: External
-pullSecret: 'SPECIFY_YOUR_PULL_SECRET'
-sshKey: |
-  ssh-rsa SPECIFY_YOUR_SSH_RSA_PUBLIC_KEY
-
-```
 ## Deploy the RHACM product hub.
 
 The RHACM product can be deployed directly from the Red Hat Operator Catalog or by using the instructions documented at [github.com/open-cluster-management/deploy](https://github.com/open-cluster-management/deploy).
