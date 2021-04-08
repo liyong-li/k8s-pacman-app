@@ -75,6 +75,22 @@ app.kubernetes.io/name=pacman
 ```
 ![Cluster_Label](images/ACM_Cluster_label_01.png)
 
+## [WIP Ansible Integration]
+
+### LoadBalancer Integration
+
+Sample HAProxy configiration file (haproxy.cfg) to loadbalance between two or more clusters
+* Edit file accordingly
+```bash
+backend app
+    balance static-rr
+    option httpchk GET / HTTP/1.1\r\nHost:\ {{ app domain name }}
+    http-request set-header Host {{ app domain name }}
+    
+    mode http
+      server aws {{ ocp console route }}:80 check inter 1s downinter 1s fall 1 rise 1 weight 10 #aws
+      server aro {{ ocp console route }}:80 check inter 1s downinter 1s fall 1 rise 1 weight 10 #aro
+```
 # References
 
 - [github.com/open-cluster-management/deploy](https://github.com/open-cluster-management/deploy)
