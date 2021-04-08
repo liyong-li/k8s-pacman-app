@@ -9,8 +9,11 @@ Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, 1 Cluster will be 
 ## Deploy RHACM on the Cluster 1
 
 Deploy RHACM on Cluster from operator hub
+![Step 1](images/ACM_operator_01.png)
 
+Follow the Steps and create a Default MultiClusterHub
 
+![Step 2](images/ACM_operator_02.png)
 ## Deploy MongoDB at Cluster 1
 
 Apply the policies under `mongodb/`.
