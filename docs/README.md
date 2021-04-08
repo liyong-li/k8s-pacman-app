@@ -10,6 +10,7 @@ Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, 1 Cluster will be 
 
 Deploy RHACM on Cluster from operator hub
 
+
 ## Deploy MongoDB at Cluster 1
 
 Apply the policies under `mongodb/`.
@@ -23,7 +24,9 @@ Apply the policies under `mongodb/`.
   oc apply -f mongo-route.yaml
   ```
 ## Edit the pacman deployment
-Get the service loadbalancer hostname and update the pacman deployment file pacman-deployment.yaml
+* Get the service loadbalancer hostname
+* Update the pacman deployment file pacman-deployment.yaml
+
   ```bash
   oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
   ```
@@ -44,6 +47,8 @@ Get the service loadbalancer hostname and update the pacman deployment file pacm
   ```
 
 ## Cluster 2 setup
+* Craete pacman-app namespace
+* Allow higher privilege for default user in pacman-app namespace
 
 ```bash
   oc create namespace pacman-app
@@ -56,10 +61,16 @@ Get the service loadbalancer hostname and update the pacman deployment file pacm
   oc apply -f pacman-app.yaml
   ```
 
-## Add in the cluster label for Cluster 2
+## Add in the cluster label
+Add the cluster label for Cluster 2 on ACM
+### Steps: 
+1. Click left menu > "Automated infrastructure" > "Clusters"
+2. Click on the 3 Dots on the right
+3. Input the Label
 ```bash
 app.kubernetes.io/name=pacman
 ```
+image::docs/images/ACM_Cluster_label_01.png[width=100%]
 
 # References
 
