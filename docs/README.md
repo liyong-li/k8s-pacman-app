@@ -70,8 +70,7 @@ Add the cluster label for Cluster 2 on ACM
 ```bash
 app.kubernetes.io/name=pacman
 ```
-![Image of Cluster Label]
-(https://github.com/DarrickLeong/k8s-pacman-app-1/blob/main/docs/images/ACM_Cluster_label_01.png)
+![](docs/images/ACM_Cluster_label_01.png)
 
 # References
 
