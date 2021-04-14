@@ -3,7 +3,9 @@
 # Setup
 
 ## Provision OpenShift 4.6+ cluster.
-Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, **Cluster 1** will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
+Provision 2 or more OpenShift 4.6 or later clusters on RHPDS
+- **Management_Cluster** will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
+- **Pacman_Cluster** will be hosting the pacman application, steps to configure the **Pacman_Cluster** are the same
 
 
 ## Fork the repository
@@ -32,15 +34,15 @@ spec:
 
 [Step 3] Push new edits to your git repository
 
-## Deploy RHACM on the Cluster 1
+## Deploy RHACM on the **Management_Cluster**
 
-Deploy RHACM on Cluster from operator hub
+Deploy RHACM on Management_Cluster from operator hub
 ![Step 1](images/ACM_operator_01.png)
 
 Follow the Steps and create a Default MultiClusterHub
 
 ![Step 2](images/ACM_operator_02.png)
-## Deploy MongoDB at Cluster 1
+## Deploy MongoDB at **Management_Cluster**
 
 Apply the policies under `mongodb/`.
 
@@ -74,9 +76,10 @@ Apply the policies under `mongodb/`.
         - containerPort: 8080
           name: http-server
   ```
+  * Push all edits to git
 
-## Cluster 2 setup
-* Craete pacman-app namespace
+## **Pacman_Cluster** setup
+* Create pacman-app namespace
 * Allow higher privilege for default user in pacman-app namespace
 
 ```bash
@@ -85,13 +88,13 @@ Apply the policies under `mongodb/`.
   oc adm policy add-scc-to-user privileged system:serviceaccount:pacman-app:default
 ```
 
-## Deploy Application/Subscription/PlacementRule on Cluster 1
+## Deploy Application/Subscription/PlacementRule on **Management_Cluster**
 ```bash
   oc apply -f pacman-app.yaml
   ```
 
 ## Add in the cluster label
-Add the cluster label for Cluster 2 on ACM
+Add the cluster label for **Pacman_Cluster** on ACM
 ### Steps: 
 1. Click left menu > "Automated infrastructure" > "Clusters"
 2. Click on the 3 Dots on the right
@@ -128,9 +131,5 @@ Github repos refrenced
 - https://github.com/jnpacker/pacman
 - [github.com/open-cluster-management/deploy](https://github.com/open-cluster-management/deploy)
 - [Ansible Tower containerized install method](https://releases.ansible.com/ansible-tower/setup_openshift/)
-- https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html
-- https://github.com/ansible/awx
-- https://github.com/ansible/awx/tree/devel/awx_collection#running
-- https://developer.servicenow.com/
-- [AWS Marketplace](https://aws.amazon.com/marketplace/pp/F5-Networks-F5-DNS-Load-Balancer-Cloud-Service/B07W3P8HM4)
+
 
