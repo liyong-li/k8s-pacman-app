@@ -3,8 +3,20 @@
 # Setup
 
 ## Provision OpenShift 4.6+ cluster.
-Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, 1 Cluster will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
+Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, Cluster 1 will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
 
+
+## Fork the repository
+You would need to create your own repository for ACM to consume the deployment files.
+- 
+ ```bash
+  cd mongodb
+  oc create namespace mongo
+  oc apply -f mongo-deployment.yaml
+  oc apply -f mongo-lb-service.yaml
+  oc apply -f mongo-pvc.yaml
+  oc apply -f mongo-route.yaml
+  ```
 
 ## Deploy RHACM on the Cluster 1
 
@@ -91,8 +103,15 @@ backend app
       server aws {{ ocp console route }}:80 check inter 1s downinter 1s fall 1 rise 1 weight 10 #aws
       server aro {{ ocp console route }}:80 check inter 1s downinter 1s fall 1 rise 1 weight 10 #aro
 ```
+
+## [WIP Tekton Integration]
+
+
 # References
 
+Github repos refrenced
+- https://github.com/mdelder/k8s-pacman-app.git
+- https://github.com/jnpacker/pacman
 - [github.com/open-cluster-management/deploy](https://github.com/open-cluster-management/deploy)
 - [Ansible Tower containerized install method](https://releases.ansible.com/ansible-tower/setup_openshift/)
 - https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html
@@ -100,3 +119,4 @@ backend app
 - https://github.com/ansible/awx/tree/devel/awx_collection#running
 - https://developer.servicenow.com/
 - [AWS Marketplace](https://aws.amazon.com/marketplace/pp/F5-Networks-F5-DNS-Load-Balancer-Cloud-Service/B07W3P8HM4)
+
