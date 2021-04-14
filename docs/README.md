@@ -3,20 +3,34 @@
 # Setup
 
 ## Provision OpenShift 4.6+ cluster.
-Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, Cluster 1 will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
+Provision 2 or more OpenShift 4.6 or later clusters on RHPDS, **Cluster 1** will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
 
 
 ## Fork the repository
-You would need to create your own repository for ACM to consume the deployment files.
-- 
- ```bash
-  cd mongodb
-  oc create namespace mongo
-  oc apply -f mongo-deployment.yaml
-  oc apply -f mongo-lb-service.yaml
-  oc apply -f mongo-pvc.yaml
-  oc apply -f mongo-route.yaml
+
+You would need to create your own repository for ACM to consume the deployment files.  
+
+[Step 1] Fork the repository to your own account, the button is below your profile picture at the top right corner  
+
+![Step 1](images/New_repo.png)
+
+[Step 2] Edit the pacman-app.yaml file with your repository path name
+ ```yaml
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  name: pacman
+  namespace: pacman-app
+  labels:
+    app.kubernetes.io/name: pacman
+  annotations:
+    apps.open-cluster-management.io/github-path: deploy
+spec:
+  type: GitHub
+  pathname: {{ Put_your_repo_pathname_here }}
   ```
+
+[Step 3] Push new edits to your git repository
 
 ## Deploy RHACM on the Cluster 1
 
