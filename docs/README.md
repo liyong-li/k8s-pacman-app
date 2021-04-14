@@ -4,7 +4,8 @@
 
 ## Provision OpenShift 4.6+ cluster.
 Provision 2 or more OpenShift 4.6 or later clusters on RHPDS
-- **Management_Cluster** will be used to host ACM and MongoDB the other clusters will be hosting the Pacman application.
+- **Management_Cluster** will be used to host ACM and MongoDB
+
 - **Pacman_Cluster** will be hosting the pacman application, steps to configure the **Pacman_Cluster** are the same
 
 
