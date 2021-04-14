@@ -57,26 +57,27 @@ Apply the policies under `mongodb/`.
   ```
 ## Edit the pacman deployment
 * Get the service loadbalancer hostname
-* Update the pacman deployment file pacman-deployment.yaml
 
-  ```bash
-  oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
-  ```
-   ```bash
-  spec:
-      hostNetwork: true
-      containers:
-      - image: quay.io/jpacker/nodejs-pacman-app:green
-        env:
-        - name: MONGO_SERVICE_HOST
-          value: "UPDATE_SERVICE_LOADBALANCER_HOSTNAME_HERE"
-        - name: MY_MONGO_PORT
-          value: "27017"
-        name: pacman
-        ports:
-        - containerPort: 8080
-          name: http-server
-  ```
+
+```bash
+oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+```
+* Update the pacman deployment file pacman-deployment.yaml
+```yaml
+spec:
+  hostNetwork: true
+    containers:
+    - image: quay.io/jpacker/nodejs-pacman-app:green
+      env:
+      - name: MONGO_SERVICE_HOST
+        value: "UPDATE_SERVICE_LOADBALANCER_HOSTNAME_HERE"
+      - name: MY_MONGO_PORT
+        value: "27017"
+      name: pacman
+      ports:
+      - containerPort: 8080
+        name: http-server
+```
   * Push all edits to git
 
 ## **Pacman_Cluster** setup
