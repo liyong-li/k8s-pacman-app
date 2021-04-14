@@ -62,7 +62,7 @@ Apply the policies under `mongodb/`.
 ```bash
 oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
-* Update the pacman deployment file pacman-deployment.yaml
+* Update the pacman deployment file pacman-deployment.yaml with the ELB hostname.
 ```yaml
 spec:
   hostNetwork: true
@@ -105,6 +105,9 @@ Add the cluster label for **Pacman_Cluster** on ACM
 app.kubernetes.io/name=pacman
 ```
 ![Cluster_Label](images/ACM_Cluster_label_01.png)
+
+ACM will start to rollout the application deployment on the **Pacman_Cluster**
+
 
 ## [WIP Ansible Integration]
 
