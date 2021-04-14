@@ -96,17 +96,19 @@ spec:
   ```
 
 ## Add in the cluster label
-Add the cluster label for **Pacman_Cluster** on ACM
+Add the cluster label for **Pacman_Cluster** from ACM UI
 ### Steps: 
-1. Click left menu > "Automated infrastructure" > "Clusters"
-2. Click on the 3 Dots on the right
-3. Input the Label
+1. Log in to ACM
+2. Click left menu > "Automated infrastructure" > "Clusters"
+3. Click on the 3 Dots on the right of the **Pacman_Cluster**
+4. Input the Label & Save
 ```bash
 app.kubernetes.io/name=pacman
 ```
 ![Cluster_Label](images/ACM_Cluster_label_01.png)
 
-ACM will start to rollout the application deployment on the **Pacman_Cluster**
+- ACM will start to rollout the application deployment on the **Pacman_Cluster**
+
 
 
 ## [WIP Ansible Integration]
