@@ -8,7 +8,6 @@ Provision 2 or more OpenShift 4.6 or later clusters on RHPDS
 
 - **Pacman_Cluster** will be hosting the pacman application, steps to configure the **Pacman_Cluster** are the same
 
-
 ## Fork the repository
 
 You would need to create your own repository for ACM to consume the deployment files.  
@@ -129,6 +128,20 @@ app.kubernetes.io/name=pacman
 ACM will start to rollout the application deployment on the **Pacman_Cluster**
 
 ![ACM_application](images/ACM_app_02.png)
+
+## Play the game
+
+Access the Game from the route deployed
+![Pacman_route](images/pacman_route.png)
+
+Play the Game!!  
+<img src="images/pacman_01.png" width="500" height="500">
+
+You should notice a few things:
+- The **Pacman_Cluster** Cloud provider's name
+- Zone that the **Pacman_Cluster** is in
+- Once you click out of the game you can see the live scores of players playing the game
+- If you finish the game (Lose all 3 lives) you can see the highscore/Leaderboard
 
 ## [WIP Ansible Integration]
 
