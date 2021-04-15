@@ -43,6 +43,15 @@ Deploy RHACM on Management_Cluster from operator hub
 Follow the Steps and create a Default MultiClusterHub
 
 ![Step 2](images/ACM_operator_02.png)
+
+Import the **Pacman_Cluster** on ACM, follow the steps accordingly
+
+![Step 2](images/ACM_import_cluster_01.png)
+
+Wait for the cluster to come up, after **Pacman_Cluster** is ready you should see something like this
+
+![Step 2](images/ACM_import_cluster_02.png)
+
 ## Deploy MongoDB at **Management_Cluster**
 
 Apply the policies under `mongodb/`.
@@ -100,10 +109,15 @@ spec:
   oc apply -f pacman-app.yaml
   ```
 
+You should see the application waiting to be deployed, application cant be deployed as it does not fulfil the placement rule which we will do that in the next step
+
+![ACM_application](images/ACM_app_01.png)
+
+
 ## Add in the cluster label
 Add the cluster label for **Pacman_Cluster** from ACM UI
 ### Steps: 
-1. Log in to ACM
+1. From ACM
 2. Click left menu > "Automated infrastructure" > "Clusters"
 3. Click on the 3 Dots on the right of the **Pacman_Cluster**
 4. Input the Label & Save
@@ -112,9 +126,9 @@ app.kubernetes.io/name=pacman
 ```
 ![Cluster_Label](images/ACM_Cluster_label_01.png)
 
-- ACM will start to rollout the application deployment on the **Pacman_Cluster**
+ACM will start to rollout the application deployment on the **Pacman_Cluster**
 
-
+![ACM_application](images/ACM_app_02.png)
 
 ## [WIP Ansible Integration]
 
