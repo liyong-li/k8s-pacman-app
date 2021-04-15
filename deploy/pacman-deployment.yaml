@@ -23,7 +23,7 @@ spec:
       - image: quay.io/jpacker/nodejs-pacman-app:green
         env:
         - name: MONGO_SERVICE_HOST
-          value: "a9c93ed64a03c454db11ab78ac4fe49b-272085162.ap-southeast-1.elb.amazonaws.com"
+          value: "adc639244f90f4cd594b691ff39292bc-861181210.ap-southeast-1.elb.amazonaws.com"
         - name: MY_MONGO_PORT
           value: "27017"
         name: pacman

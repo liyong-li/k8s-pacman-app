@@ -60,9 +60,14 @@ Apply the policies under `mongodb/`.
 
 
 ```bash
-oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+oc get service/mongo-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' -n mongo
 ```
 * Update the pacman deployment file pacman-deployment.yaml with the ELB hostname.
+
+```bash
+vi pacman-deploy.yaml
+```
+
 ```yaml
 spec:
   hostNetwork: true
