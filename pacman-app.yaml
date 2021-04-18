@@ -15,7 +15,7 @@ metadata:
     apps.open-cluster-management.io/github-path: deploy
 spec:
   type: GitHub
-  pathname: https://github.com/DarrickLeong/k8s-pacman-app.git
+  pathname: https://github.com/liyong-li/k8s-pacman-app.git
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
